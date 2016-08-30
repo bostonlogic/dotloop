@@ -3,8 +3,8 @@ module Dotloop
     include Dotloop::QueryParamHelpers
     attr_accessor :client
 
-    def initialize(client:)
-      @client = client
+    def initialize(args)
+      @client = args[:client]
     end
 
     def all(options = {})
@@ -25,12 +25,12 @@ module Dotloop
       end
     end
 
-    def find(profile_id:, loop_view_id:)
+    def find(profile_id, loop_view_id)
       loop_data = @client.get("/profile/#{profile_id.to_i}/loop/#{loop_view_id.to_i}")
       Dotloop::Models::Loop.new(loop_data)
     end
 
-    def detail(profile_id:, loop_view_id:)
+    def detail(profile_id, loop_view_id)
       loop_detail = @client.get("/profile/#{profile_id.to_i}/loop/#{loop_view_id.to_i}/detail")
       loop_detail[:sections] = fixed_sections(loop_detail[:sections])
       Dotloop::Models::LoopDetail.new(loop_detail)
@@ -47,15 +47,15 @@ module Dotloop
 
     def query_params(options)
       {
-        batchNumber:         batch_number(options),
-        batchSize:           batch_size(options),
-        statusIds:           status_ids(options),
-        complianceStatusIds: compliance_status_ids(options),
-        tagIds:              tag_ids(options),
-        sortBy:              options[:sort_by],
-        searchQuery:         options[:search_query],
-        tagNames:            options[:tag_names],
-        createdByMe:         created_by_me(options)
+        :batchNumber =>         batch_number(options),
+        :batchSize =>           batch_size(options),
+        :statusIds =>           status_ids(options),
+        :complianceStatusIds => compliance_status_ids(options),
+        :tagIds =>              tag_ids(options),
+        :sortBy =>              options[:sort_by],
+        :searchQuery =>         options[:search_query],
+        :tagNames =>            options[:tag_names],
+        :createdByMe =>         created_by_me(options)
       }.delete_if { |_, v| should_delete(v) }
     end
   end

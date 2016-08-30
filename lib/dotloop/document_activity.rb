@@ -3,8 +3,8 @@ module Dotloop
     include Dotloop::QueryParamHelpers
     attr_accessor :client
 
-    def initialize(client:)
-      @client = client
+    def initialize(args)
+      @client = args[:client]
     end
 
     def all(options = {})

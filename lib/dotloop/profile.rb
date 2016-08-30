@@ -2,8 +2,8 @@ module Dotloop
   class Profile
     attr_accessor :client
 
-    def initialize(client:)
-      @client = client
+    def initialize(args)
+      @client = args[:client]
     end
 
     def all

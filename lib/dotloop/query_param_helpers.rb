@@ -7,8 +7,8 @@ module Dotloop
 
     def query_params(options)
       {
-        batchNumber: batch_number(options),
-        batchSize: batch_size(options)
+        :batchNumber => batch_number(options),
+        :batchSize => batch_size(options)
       }.delete_if { |_, v| should_delete(v) }
     end
 

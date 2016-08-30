@@ -3,8 +3,8 @@ module Dotloop
     include Dotloop::QueryParamHelpers
     attr_accessor :client
 
-    def initialize(client:)
-      @client = client
+    def initialize(args)
+      @client = args[:client]
     end
 
     def all(options = {})
@@ -21,7 +21,9 @@ module Dotloop
       persons
     end
 
-    def find(profile_id:, person_id:)
+    def find(arg_one, arg_two)
+      profile_id = arg_one[:profile_id] 
+      person_id = arg_two[:person_id]
       person = @client.get("/profile/#{profile_id.to_i}/person/#{person_id.to_i}").first
       Dotloop::Models::Person.new(person)
     end

@@ -6,15 +6,13 @@ require 'dotloop/version'
 Gem::Specification.new do |spec|
   spec.name          = 'dotloop'
   spec.version       = Dotloop::VERSION
-  spec.authors       = ['Loft47']
-  spec.email         = ['support@loft47.com']
+  spec.authors       = ['Paul Dornfeld']
+  spec.email         = ['pdornfel@gmail.com']
 
-  spec.summary       = %(Dotloop library)
-  spec.description   = %(Ruby library for Dotloop API.)
-  spec.homepage      = %(http://github.com/Loft47/dotloop)
+  spec.summary       = %(Dotloop library forked from https://github.com/Loft47/dotloop)
+  spec.description   = %(Ruby library for Dotloop API. Using Curb instead of HTTParty and capatable with pre ruby 1.9.3 versions)
+  spec.homepage      = %(https://github.com/pdornfel/dotloop)
   spec.license       = 'MIT'
-  spec.cert_chain    = ['certs/shanedavies.pem']
-  spec.signing_key   = File.expand_path('~/.ssh/dotloop-private_key.pem') if $PROGRAM_NAME.end_with?('gem')
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
   # to allow pushing to a single host or delete this section to allow pushing to any host.
@@ -26,10 +24,11 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
-  spec.add_runtime_dependency 'simplecov', '~> 0.12'
-  spec.add_runtime_dependency 'coveralls', '~> 0.8'
-  spec.add_runtime_dependency 'httparty', '~> 0.13'
-  spec.add_runtime_dependency 'virtus', '~> 1.0'
+  spec.add_runtime_dependency 'curb', '~> 0.8.0'
+  spec.add_runtime_dependency 'oj', '~> 2.5.4'
+  spec.add_runtime_dependency 'rash', '~> 0.4.0'
+  spec.add_runtime_dependency 'model_attribute', '~> 3.0.0'
+  # spec.add_runtime_dependency 'virtus', '~> 1.0'
   spec.add_runtime_dependency 'plissken', '~> 0.2'
   spec.add_development_dependency 'bundler', '~> 1.12'
   spec.add_development_dependency 'rake', '~> 10.0'
