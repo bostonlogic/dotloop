@@ -25,7 +25,7 @@ module Dotloop
       end
 
       def loops
-        client.Loop.all(profile_id profile_id)
+        client.Loop.all(:profile_id => profile_id)
       end
     end
   end

@@ -1,17 +1,29 @@
 module Dotloop
   module Models
     class Document
-      include Virtus.model
-      attribute :created_by, Integer
-      attribute :created_date, DateTime
-      attribute :document_id, Integer
-      attribute :document_name
-      attribute :folder_name
-      attribute :last_modified_date, DateTime
-      attribute :loop_id, Integer
-      attribute :shared_with, Array[Integer]
-      attribute :signature_verfication_link
+      extend ModelAttribute
+      
       attr_accessor :client
+      
+      attribute :created_by,                  :integer
+      attribute :created_date,                :time
+      attribute :document_id,                 :integer
+      attribute :document_name,               :string
+      attribute :folder_name,                 :string
+      attribute :last_modified_date,          :time
+      attribute :loop_id,                     :integer
+      attribute :signature_verfication_link,  :string
+      
+      attr_reader :shared_with
+      
+      def initialize(attributes = {})
+        set_attributes(attributes)
+      end
+      
+      def shared_with=(attrs)
+        @shared_with = attrs.map(&:to_i)
+      end
+      
     end
   end
 end

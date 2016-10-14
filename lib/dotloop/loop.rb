@@ -25,13 +25,13 @@ module Dotloop
       end
     end
 
-    def find(profile_id, loop_view_id)
-      loop_data = @client.get("/profile/#{profile_id.to_i}/loop/#{loop_view_id.to_i}")
+    def find(options = {})
+      loop_data = @client.get("/profile/#{profile_id(options)}/loop/#{loop_view_id(options)}")
       Dotloop::Models::Loop.new(loop_data)
     end
 
-    def detail(profile_id, loop_view_id)
-      loop_detail = @client.get("/profile/#{profile_id.to_i}/loop/#{loop_view_id.to_i}/detail")
+    def detail(options = {})
+      loop_detail = @client.get("/profile/#{profile_id(options)}/loop/#{loop_view_id(options)}/detail")
       loop_detail[:sections] = fixed_sections(loop_detail[:sections])
       Dotloop::Models::LoopDetail.new(loop_detail)
     end

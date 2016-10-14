@@ -1,13 +1,18 @@
 module Dotloop
   module Models
     class Financials
-      include Virtus.model
-
-      attribute :comission_rate
-      attribute :current_price
-      attribute :earnest_money_held_by
-      attribute :original_listing_price
-      attribute :purchase_price
+      extend ModelAttribute
+      
+      attribute :comission_rate,             :string
+      attribute :current_price,              :string
+      attribute :earnest_money_held_by,      :string
+      attribute :original_listing_price,     :string
+      attribute :purchase_price,             :string
+      
+      def initialize(attributes = {})
+        set_attributes(attributes)
+      end
+    
     end
   end
 end

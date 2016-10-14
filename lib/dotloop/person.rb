@@ -21,10 +21,8 @@ module Dotloop
       persons
     end
 
-    def find(arg_one, arg_two)
-      profile_id = arg_one[:profile_id] 
-      person_id = arg_two[:person_id]
-      person = @client.get("/profile/#{profile_id.to_i}/person/#{person_id.to_i}").first
+    def find(options = {})
+      person = @client.get("/profile/#{profile_id(options)}/person/#{person_id(options)}").first
       Dotloop::Models::Person.new(person)
     end
   end

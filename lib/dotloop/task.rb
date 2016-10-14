@@ -1,13 +1,14 @@
 module Dotloop
   class Task
+    include Dotloop::QueryParamHelpers
     attr_accessor :client
 
     def initialize(args)
       @client = args[:client]
     end
 
-    def all(profile_id, loop_view_id)
-      url = "/profile/#{profile_id.to_i}/loop/#{loop_view_id.to_i}/task"
+    def all(options = {})
+      url = "/profile/#{profile_id(options)}/loop/#{loop_view_id(options)}/task"
       @client.get(url).map { |task_attrs| Dotloop::Models::Task.new(task_attrs) }
     end
   end

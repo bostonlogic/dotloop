@@ -28,8 +28,8 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency 'oj', '~> 2.5.4'
   spec.add_runtime_dependency 'rash', '~> 0.4.0'
   spec.add_runtime_dependency 'model_attribute', '~> 3.0.0'
-  # spec.add_runtime_dependency 'virtus', '~> 1.0'
   spec.add_runtime_dependency 'plissken', '~> 0.2'
+
   spec.add_development_dependency 'bundler', '~> 1.12'
   spec.add_development_dependency 'rake', '~> 10.0'
   spec.add_development_dependency 'rspec', '~> 3.0'

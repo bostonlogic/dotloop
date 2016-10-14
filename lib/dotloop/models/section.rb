@@ -1,11 +1,18 @@
 module Dotloop
   module Models
+    
     class Section
-      include Virtus.model
-      attribute :buying_brokerage, Dotloop::Models::BuyingBrokerage
-      attribute :financials, Dotloop::Models::Financials
-      attribute :listing_brokerage, Dotloop::Models::ListingBrokerage
-      attribute :property_address, Dotloop::Models::PropertyAddress
+      extend ModelAttribute
+      
+      attr_reader :property_address, :buying_brokerage, :listing_brokerage, :financials 
+
+      def initialize(attributes = {})
+        @property_address = Dotloop::Models::PropertyAddress.new(attributes.property_address) if attributes.property_address
+        @buying_brokerage = Dotloop::Models::BuyingBrokerage.new(attributes.buying_brokerage) if attributes.buying_brokerage
+        @listing_brokerage = Dotloop::Models::ListingBrokerage.new(attributes.listing_brokerage) if attributes.listing_brokerage
+        @financials = Dotloop::Models::Financials.new(attributes.financials) if attributes.financials
+      end
     end
+  
   end
 end

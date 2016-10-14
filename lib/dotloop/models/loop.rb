@@ -1,15 +1,23 @@
 module Dotloop
   module Models
     class Loop
-      include Virtus.model
-      attribute :created_by, Integer
-      attribute :last_updated, DateTime
-      attribute :loop_id, Integer
-      attribute :loop_name
-      attribute :loop_status
-      attribute :loop_tags, Array
-      attribute :loop_view_id, Integer
-      attribute :transaction_type
+      extend ModelAttribute
+
+      attr_reader :loop_tags
+
+      attribute :created_by,        :integer
+      attribute :last_updated,      :time
+      attribute :loop_id,           :integer
+      attribute :loop_name,         :string
+      attribute :loop_status,       :string
+      attribute :loop_view_id,      :integer
+      attribute :transaction_type,  :string
+
+      def initialize(attributes = {})
+        @loop_tags = attributes[:loop_tags]
+        set_attributes(attributes)
+      end
+
     end
   end
 end

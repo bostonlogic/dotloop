@@ -1,16 +1,22 @@
 module Dotloop
   module Models
+    
     class PropertyAddress
-      include Virtus.model
+      extend ModelAttribute
 
-      attribute :city
-      attribute :country
-      attribute :mls_number
-      attribute :postal_code
-      attribute :property_address_country
-      attribute :state_or_province
-      attribute :street_name
-      attribute :street_number
+      attribute :city,                       :string
+      attribute :country,                    :string
+      attribute :mls_number,                 :string
+      attribute :postal_code,                :string
+      attribute :property_address_country,   :string
+      attribute :state_or_province,          :string
+      attribute :street_name,                :string
+      attribute :street_number,              :string
+
+      def initialize(attributes = {})
+        set_attributes(attributes)
+      end
     end
+  
   end
 end

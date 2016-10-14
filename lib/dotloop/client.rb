@@ -77,11 +77,5 @@ module Dotloop
         hash.to_snake_keys
       end
     end
-
-    private
-
-    def headers
-      
-    end
   end
 end

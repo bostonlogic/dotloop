@@ -1,12 +1,18 @@
 module Dotloop
   module Models
     class Participant
-      include Virtus.model
-      attribute :email
-      attribute :member_of_my_team
-      attribute :name, Boolean
-      attribute :participant_id, Integer
-      attribute :role
+      extend ModelAttribute
+      
+      attribute :email,               :string
+      attribute :member_of_my_team,   :string
+      attribute :name,                :string
+      attribute :participant_id,      :integer
+      attribute :role,                :string
+      
+      def initialize(attributes = {})
+        set_attributes(attributes)
+      end
+    
     end
   end
 end

@@ -1,9 +1,15 @@
 module Dotloop
   module Models
     class LoopActivity
-      include Virtus.model
-      attribute :activity_date, DateTime
-      attribute :message
+      extend ModelAttribute
+
+      attribute :activity_date,    :time
+      attribute :message,          :string
+
+      def initialize(attributes = {})
+        set_attributes(attributes)
+      end
+
     end
   end
 end

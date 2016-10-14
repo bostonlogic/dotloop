@@ -1,7 +1,8 @@
 module Dotloop
   module QueryParamHelpers
     BATCH_SIZE = 50
-    MAX_LOOPS = 500
+    # MAX_LOOPS = 500
+    MAX_LOOPS = 3
 
     private
 
@@ -20,10 +21,20 @@ module Dotloop
       raise 'profile_id is required' unless options[:profile_id]
       options[:profile_id].to_i
     end
+    
+    def person_id(options)
+      raise 'person_id is required' unless options[:person_id]
+      options[:person_id].to_i
+    end
 
     def document_id(options)
       raise 'document_id is required' unless options[:document_id]
       options[:document_id].to_i
+    end
+    
+    def document_name(options)
+      raise 'document_name is required' unless options[:document_name]
+      options[:document_name]
     end
 
     def batch_number(options)

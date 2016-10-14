@@ -1,19 +1,25 @@
 module Dotloop
   module Models
     class Person
-      include Virtus.model
-      attribute :city
-      attribute :email
-      attribute :fax
-      attribute :first_name
-      attribute :homephone
-      attribute :last_name
-      attribute :officephone
-      attribute :person_id, Integer
-      attribute :state_or_prov
-      attribute :street_address01
-      attribute :zip_or_postal_code
-      attr_accessor :client
+      extend ModelAttribute
+      
+      attribute :city,                  :string
+      attribute :email,                 :string
+      attribute :fax,                   :string
+      attribute :first_name,            :string
+      attribute :homephone,             :string
+      attribute :last_name,             :string
+      attribute :officephone,           :string
+      attribute :person_id,             :integer
+      attribute :state_or_prov,         :string
+      attribute :street_address01,      :string
+      attribute :zip_or_postal_code,    :string
+      
+      
+      def initialize(attributes = {})
+        set_attributes(attributes)
+      end
+    
     end
   end
 end
