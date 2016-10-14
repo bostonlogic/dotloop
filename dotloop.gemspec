@@ -25,7 +25,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_runtime_dependency 'curb', '~> 0.8.0'
-  spec.add_runtime_dependency 'oj', '2.5.4'
+  spec.add_runtime_dependency 'oj', '~> 2.5.4'
   spec.add_runtime_dependency 'rash', '~> 0.4.0'
   spec.add_runtime_dependency 'model_attribute', '~> 3.0.0'
   spec.add_runtime_dependency 'plissken', '~> 0.2'

@@ -13,14 +13,18 @@ module Dotloop
         klass.attribute :suite,                 :string
         klass.attribute :office_phone,          :string
         
-        klass.include Dotloop::Models::BrokerageAttrs::InstanceMethods
+        klass.class_eval do
+          include InstanceMethods
+        end 
+      
       end
-
+      
       module InstanceMethods
         def initialize(attributes = {})
           set_attributes(attributes)
         end
       end
+
     end
   end
 end
