@@ -2,7 +2,6 @@ require 'plissken'
 require 'curb'
 require 'model_attribute'
 require 'rash'
-require 'addressable'
 require 'oj'
 
 require 'dotloop/version'
