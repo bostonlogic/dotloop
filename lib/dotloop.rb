@@ -3,7 +3,7 @@ require 'curb'
 require 'model_attribute'
 require 'rash'
 require 'oj'
-require 'addressable'
+# require 'addressable'
 
 require 'dotloop/version'
 require 'dotloop/client'
