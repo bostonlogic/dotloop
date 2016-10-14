@@ -17,11 +17,10 @@ module Dotloop
     end
 
     def raw(page, params = {})
-      # uri = Addressable::URI.parse(@base_uri + page)
-      # uri.query_values = params
-      # uri.query
-      # response = Curl.get(uri.to_s) do |http|
-      response = Curl.get(@base_uri + page + params.to_query) do |http| #to be removed once upgrade to > 1.9.0 complete
+      uri = Addressable::URI.parse(@base_uri + page)
+      uri.query_values = params
+      uri.query
+      response = Curl.get(uri.to_s) do |http|
         http.headers['Authorization'] = "Bearer #{@api_key}"
         http.headers['User-Agent'] = @application
         http.headers['Accept'] = '*/*'
