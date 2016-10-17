@@ -14,6 +14,7 @@ module Dotloop
       attribute :street_number,              :string
 
       def initialize(attributes = {})
+        attributes ||= {}
         set_attributes(attributes)
       end
     end

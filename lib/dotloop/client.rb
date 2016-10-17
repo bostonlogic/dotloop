@@ -13,13 +13,9 @@ module Dotloop
     end
 
     def get(page, params = {})
-      begin
-        raw = raw(page, params)
-        snaked = snakify(raw)
-        hashify(snaked)
-      rescue 
-        []
-      end
+      raw = raw(page, params)
+      snaked = snakify(raw)
+      hashify(snaked)
     end
 
     def Profile

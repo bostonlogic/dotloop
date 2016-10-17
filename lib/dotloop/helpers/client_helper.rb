@@ -9,9 +9,13 @@ module ClientHelper
       http.headers['User-Agent'] = @application
       http.headers['Accept'] = '*/*'
     end
-    binding.pry unless response.response_code == 200
     raise "Error communicating: Response code #{response.response_code}" unless response.response_code == 200
-    resp = Oj.load response.body_str 
+    case response.content_type
+    when /json/
+      Oj.load response.body_str
+    when /pdf/
+      response.body_str
+    end
   end
   
   def hashify(val)

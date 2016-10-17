@@ -10,6 +10,7 @@ module Dotloop
       attribute :purchase_price,             :string
       
       def initialize(attributes = {})
+        attributes ||= {}
         set_attributes(attributes)
       end
     
