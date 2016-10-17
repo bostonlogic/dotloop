@@ -21,6 +21,7 @@ module Dotloop
       
       module InstanceMethods
         def initialize(attributes = {})
+          attributes ||= {}
           set_attributes(attributes)
         end
       end

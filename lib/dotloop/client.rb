@@ -1,32 +1,25 @@
 module Dotloop
   class Client
     include Curl
+    include ClientHelper
 
     attr_accessor :api_key, :application, :base_uri
 
     def initialize(api_key, application = 'dotloop')
       @api_key = api_key[:api_key]
       @application = application
-      @base_uri = 'https://www.dotloop.com/my/api/v1_0/'
+      @base_uri = 'https://www.dotloop.com/my/api/v1_0'
       raise 'Please enter an API key' unless @api_key
     end
 
     def get(page, params = {})
-      response = raw(page, params)
-      self.class.snakify(response)
-    end
-
-    def raw(page, params = {})
-      uri = Addressable::URI.parse(@base_uri + page)
-      uri.query_values = params
-      uri.query
-      response = Curl.get(uri.to_s) do |http|
-        http.headers['Authorization'] = "Bearer #{@api_key}"
-        http.headers['User-Agent'] = @application
-        http.headers['Accept'] = '*/*'
+      begin
+        raw = raw(page, params)
+        snaked = snakify(raw)
+        hashify(snaked)
+      rescue 
+        []
       end
-      raise "Error communicating: Response code #{response.response_code}" unless response.response_code == 200
-      Oj.load response.body_str
     end
 
     def Profile
@@ -71,14 +64,6 @@ module Dotloop
 
     def Admin
       @admin ||= Dotloop::Admin.new(:client => self)
-    end
-
-    def self.snakify(hash)
-      if hash.is_a? Array
-        hash.map(&:to_snake_keys)
-      else
-        hash.to_snake_keys
-      end
     end
   end
 end

@@ -1,9 +1,3 @@
-client = Dotloop::Client.new(:api_key => "768d34f7-2019-4cf1-a41b-07393f650176")
-
-
-
-
-
 # DotLoop API Library
 [![Build Status](https://travis-ci.org/Loft47/dotloop.svg?branch=master)](https://travis-ci.org/Loft47/dotloop)
 [![Coverage Status](https://coveralls.io/repos/github/Loft47/dotloop/badge.svg?branch=master&renew=true)](https://coveralls.io/github/Loft47/dotloop?branch=master)
